@@ -16,7 +16,13 @@ var cards = [
 	'fa fa-bicycle',
 	'fa fa-bomb'];
 
+var count;
+
 document.querySelector('.restart').addEventListener('click', displayCards);
+document.querySelector('.green-button').addEventListener('click', function() {
+	hidePopUp();
+	displayCards();
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle() {
@@ -31,10 +37,6 @@ function shuffle() {
     }
 
     return cards;
-}
-
-function removeCards() {
-	document.querySelector('.deck').innerHTML = "";
 }
 
 function displayCards(event) {
@@ -53,9 +55,13 @@ function showCards() {
 	document.querySelector('.deck').innerHTML = str;
 }
 
+function removeCards() {
+	document.querySelector('.deck').innerHTML = "";
+}
+
 function counter(){
 	var element = document.querySelector('.moves')
-	var count = Number(element.innerText);
+	count = Number(element.innerText);
 	count += 1;
 	element.innerText = count;
 }
@@ -74,7 +80,13 @@ function openCard(event) {
 		if (card_class(opened_cards[0]) == card_class(element)) {
 			setTimeout(function(){ match(element, opened_cards[0]) }, 300);
 		} else {
-			setTimeout(function(){ close(element, opened_cards[0]) }, 300);
+			setTimeout(function(){ 
+				shake(element, opened_cards[0]);
+				close(element, opened_cards[0]); 
+			}, 300);
+			setTimeout(function(){
+				stop_shake(element, opened_cards[0]);
+			}, 800);
 		}
 	}
 }
@@ -82,7 +94,7 @@ function openCard(event) {
 function popUp(){
 	var opened_cards = document.querySelectorAll('.match')
 	if (opened_cards.length == 16) {
-		alert("End of the game! Score: " + document.querySelector('.moves').innerText);
+		showPopUp();
 	}
 }
 
@@ -93,6 +105,16 @@ function card_class(element) {
 function close(element1, element2) {
 	element1.classList.remove("open","show");
 	element2.classList.remove("open","show");
+}
+
+function shake(element1, element2) {
+	element1.classList.add("apply-shake");
+	element2.classList.add("apply-shake");
+}
+
+function stop_shake(element1, element2) {
+	element1.classList.remove("apply-shake");
+	element2.classList.remove("apply-shake");
 }
 
 function match(element1, element2) {
@@ -112,17 +134,29 @@ function resetCounter() {
 	document.querySelector('.moves').innerText = "0";
 }
 
+function showPopUp() {
+	var cont_popup = document.querySelector('.container_popup');
+	var container = document.querySelector('.container');
+	cont_popup.classList.remove("hide-window");
+	container.classList.remove("show-window");
+	cont_popup.classList.add("show-window");
+	container.classList.add("hide-window");
+	movesPopUp();
+}
+
+function hidePopUp() {
+	var cont_popup = document.querySelector('.container_popup');
+	var container = document.querySelector('.container');
+	cont_popup.classList.remove("show-window");
+	container.classList.remove("hide-window");
+	cont_popup.classList.add("hide-window");
+	container.classList.add("show-window");
+}
+
+function movesPopUp() {
+	var moves = document.querySelector('.scores').innerText;
+	moves = "With " + count + " moves!";
+	document.querySelector('.scores').innerText = moves;
+}
+
 displayCards(this);
-
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
