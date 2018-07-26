@@ -1,3 +1,8 @@
 # How to contribute
 
-The files in this repository are used as the starting point for all students. Because we want students to write the majority of the code themselves, pull requests (most likely) will _not_ be merged into the project.
+1. Go to https://github.com/peckalo/memory_game
+2. Click on button 'New Pull request'.
+3. Submit your pull request.
+4. Wait till your pull request is reviewed and accepted.
+
+
