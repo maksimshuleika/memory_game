@@ -2,19 +2,15 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [How to play](#howtoplay)
+* [List of dependencies](#dependencies)
 
-## Instructions
+## How to play
+In order to play please download folder to your computer and start index.html
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## List of dependencies
+	1. https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
+    2. Fonts - fonts.googleapis.com/css?family=Coda
+    3. Function to shuffle cards - http://stackoverflow.com/a/2450976
+    4. Code for timer - https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+    5. Code for cards shaking effect - https://teamtreehouse.com/community/shake-effect-with-javascript-only
